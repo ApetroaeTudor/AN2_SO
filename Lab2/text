@@ -1,0 +1,6 @@
+
+echo "woof"
+
+greet() {
+	cd $HOME;
+}
