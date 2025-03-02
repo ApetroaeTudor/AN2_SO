@@ -7,7 +7,8 @@ case $# in
 	1) echo "$1";;
 	2) if [ $2 -eq 0 ]; then 
 		echo "can't divide by 0!"; exit 1;
-	fi;;
+	fi
+		echo $(($1 % $2));;
 	
 	*) echo "can't evaluate more than 2 numbers!";;
 esac
