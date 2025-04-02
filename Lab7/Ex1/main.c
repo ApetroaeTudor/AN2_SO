@@ -12,6 +12,13 @@
 #define MAXINCERC 3
 #define WAITTIME 3
 
+
+
+//INCOMPLET
+
+
+
+
 static char* lockpath(char* name)
 {
     static char path[256]; 
