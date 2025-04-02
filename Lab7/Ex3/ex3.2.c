@@ -1,5 +1,15 @@
 #include "err.h"
 
+
+//INCOMPLET
+
+
+
+
+
+
+
+
 int main(void){
   pid_t relParent_pid=fork();
 
