@@ -1,0 +1,3 @@
+Comenzi pt a inchide cozi dupa rulare cu probleme:
+ipcs -q pt a vedea ce cozi exista acm
+iprm -q IDCoada (care e luat din ce zice comanda de mai sus)

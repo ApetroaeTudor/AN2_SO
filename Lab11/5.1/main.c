@@ -1,0 +1,42 @@
+#include "hdr.h"
+#include "main.h"
+
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <errno.h>
+int main(void)
+{
+	int mayProduceQueueID;
+	int canConsumeQueueID;
+	if( (mayProduceQueueID = msgget( (key_t)KEY_MAY_PRODUCE, 0666| IPC_CREAT | IPC_EXCL )) < 0)
+	{
+		err_sys("Error on msgget on opening PRODUCE QUEUE on main.\n");
+	}
+
+	if( (canConsumeQueueID = msgget((key_t)KEY_MAY_CONSUME,0666| IPC_CREAT | IPC_EXCL) )<0 )
+	{
+		err_sys("Error on msgget on opening CONSUME QUEUE on main.\n");
+	}
+	int i;
+
+	struct nullmsg mynullmsg;
+	mynullmsg.mtype = 1;
+	mynullmsg.mtext = '\0';
+
+	for(i = 0; i < CAPACITY ; i++)
+	{
+		if( (msgsnd(mayProduceQueueID,(struct msgbuf*)&mynullmsg,sizeof(mynullmsg)-sizeof(long),0) ) < 0  )
+		{
+			err_sys("Error on sending null token on mayconsume queue.\n");
+		}
+	}
+
+	//acum trb implementat prod/consumer separat;
+	//intai se lanseaza main in executie dupa care lansez cate un producator si un consumator
+	//producatorul trb sa produca 6 elem iar un consumator poate consuma 5
+	//se lanseaza 2 consumatori
+	//
+	return 0;
+}
+
